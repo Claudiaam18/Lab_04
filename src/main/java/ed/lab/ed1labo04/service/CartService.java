@@ -51,7 +51,6 @@ public class CartService {
             cartItem.setQuantity(itemRequest.getQuantity());
 
             cartItems.add(cartItem);
-
             totalPrice += product.getPrice() * itemRequest.getQuantity();
         }
 
@@ -66,6 +65,7 @@ public class CartService {
         return cartRepository.save(cart);
     }
 
+    @Transactional
     public CartEntity getCartById(Long id) {
         return cartRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Cart not found"));

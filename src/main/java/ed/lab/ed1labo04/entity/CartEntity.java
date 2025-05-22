@@ -1,5 +1,6 @@
 package ed.lab.ed1labo04.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +13,14 @@ public class CartEntity {
     private Long id;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<CartItemEntity> cartItems = new ArrayList<>();
 
     private double totalPrice;
+
+    public CartEntity() {
+        this.cartItems = new ArrayList<>();
+    }
 
     public Long getId() {
         return id;
