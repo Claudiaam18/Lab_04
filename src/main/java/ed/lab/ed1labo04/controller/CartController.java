@@ -1,7 +1,7 @@
 package ed.lab.ed1labo04.controller;
 
 import ed.lab.ed1labo04.entity.CartEntity;
-import ed.lab.ed1labo04.dto.CreateCartRequest;
+import ed.lab.ed1labo04.model.CreateCartRequest;
 import ed.lab.ed1labo04.service.CartService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +24,6 @@ public class CartController {
             return new ResponseEntity<>(createdCart, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Unexpected error");
         }
     }
 
@@ -35,6 +33,7 @@ public class CartController {
             CartEntity cart = cartService.getCartById(id);
             return ResponseEntity.ok(cart);
         } catch (IllegalArgumentException e) {
+            // Mensaje esperado: "Cart not found"
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }

@@ -11,21 +11,17 @@ public class CartItemEntity {
 
     private Long productId;
     private String name;
-    private Double price;
+    private double price;
     private int quantity;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "cart_id")
     private CartEntity cart;
 
-    // Getters y Setters
+    // Getters y setters
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Long getProductId() {
@@ -44,11 +40,11 @@ public class CartItemEntity {
         this.name = name;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

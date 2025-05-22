@@ -3,13 +3,10 @@ package ed.lab.ed1labo04.service;
 import ed.lab.ed1labo04.entity.CartEntity;
 import ed.lab.ed1labo04.entity.CartItemEntity;
 import ed.lab.ed1labo04.entity.ProductEntity;
-
-import ed.lab.ed1labo04.dto.CartItemRequest;
-import ed.lab.ed1labo04.dto.CreateCartRequest;
-
+import ed.lab.ed1labo04.model.CartItemRequest;
+import ed.lab.ed1labo04.model.CreateCartRequest;
 import ed.lab.ed1labo04.repository.CartRepository;
 import ed.lab.ed1labo04.repository.ProductRepository;
-
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -66,16 +63,17 @@ public class CartService {
         cart.setCartItems(cartItems);
         cart.setTotalPrice(totalPrice);
 
-        // Asociar carrito a cada item
+        // Asociar carrito a cada item (para la relación bidireccional)
         for (CartItemEntity cartItem : cartItems) {
             cartItem.setCart(cart);
         }
 
+        // Guardar y retornar carrito
         return cartRepository.save(cart);
     }
 
     public CartEntity getCartById(Long id) {
         return cartRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Cart not found with id: " + id));
+                .orElseThrow(() -> new IllegalArgumentException("Cart not found"));
     }
 }
