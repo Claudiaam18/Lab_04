@@ -1,10 +1,9 @@
 package ed.lab.ed1labo04.dto;
 
-import ed.lab.ed1labo04.dto.CartItemRequest;
-
 import java.util.List;
 
 public class CreateCartRequest {
+
     private List<CartItemRequest> cartItems;
 
     public List<CartItemRequest> getCartItems() {
