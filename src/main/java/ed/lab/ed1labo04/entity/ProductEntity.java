@@ -9,10 +9,10 @@ public class ProductEntity {
     @Id
     @GeneratedValue
 
-    Long id;
-    String name;
-    Double price;
-    int quantity;
+    private Long id;
+    private String name;
+    private Double price;
+    private int quantity;
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

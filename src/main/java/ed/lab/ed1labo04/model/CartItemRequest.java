@@ -1,6 +1,7 @@
 package ed.lab.ed1labo04.model;
 
 public class CartItemRequest {
+
     private Long productId;
     private int quantity;
 

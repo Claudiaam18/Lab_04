@@ -20,3 +20,4 @@ public class UpdateProductRequest {
         this.quantity = quantity;
     }
 }
+
