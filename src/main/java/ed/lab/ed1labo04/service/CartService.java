@@ -41,11 +41,9 @@ public class CartService {
                 throw new IllegalArgumentException("Insufficient stock for product id: " + itemRequest.getProductId());
             }
 
-            // Restar inventario
             product.setQuantity(product.getQuantity() - itemRequest.getQuantity());
             productRepository.save(product);
 
-            // Crear cart item
             CartItemEntity cartItem = new CartItemEntity();
             cartItem.setProductId(product.getId());
             cartItem.setName(product.getName());
@@ -54,21 +52,17 @@ public class CartService {
 
             cartItems.add(cartItem);
 
-            // Sumar al total
             totalPrice += product.getPrice() * itemRequest.getQuantity();
         }
 
-        // Crear carrito
         CartEntity cart = new CartEntity();
         cart.setCartItems(cartItems);
         cart.setTotalPrice(totalPrice);
 
-        // Asociar carrito a cada item (para la relación bidireccional)
         for (CartItemEntity cartItem : cartItems) {
             cartItem.setCart(cart);
         }
 
-        // Guardar y retornar carrito
         return cartRepository.save(cart);
     }
 
