@@ -16,9 +16,7 @@ public class CartItemEntity {
 
     @ManyToOne
     @JoinColumn(name = "cart_id")
-    private CartEntity cart; // Relación con el carrito
-
-    // Getters y setters
+    private CartEntity cart;
 
     public Long getId() {
         return id;

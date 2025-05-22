@@ -1,7 +1,7 @@
 package ed.lab.ed1labo04.entity;
 
 import jakarta.persistence.*;
-
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,11 +12,9 @@ public class CartEntity {
     private Long id;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartItemEntity> cartItems;
+    private List<CartItemEntity> cartItems = new ArrayList<>();
 
     private double totalPrice;
-
-    // Getters y Setters
 
     public Long getId() {
         return id;
@@ -38,4 +36,3 @@ public class CartEntity {
         this.totalPrice = totalPrice;
     }
 }
-
